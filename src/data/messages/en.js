@@ -16,4 +16,5 @@ module.exports = {
   'gdpr_subject': '',
   'gdpr_confirmation': '',
   'gdpr_more_info': '',
+  'allTestimonials': 'All testimonials'
 };

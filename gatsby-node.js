@@ -106,6 +106,55 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           return
         })
       })
+      .then(() => {
+        graphql(`
+        {
+          allContentfulTestimonial {
+            edges {
+              node {
+                id
+                node_locale
+                hide
+                profile {
+                  file {
+                    url
+                  }
+                }
+                author
+                testimonial {
+                  testimonial
+                }
+              }
+            }
+          }
+        }
+      `).then(result => {
+          if (result.errors) {
+            reject(result.errors)
+          }
+
+          createPaginatedPages({
+            edges: result.data.allContentfulTestimonial.edges,
+            createPage,
+            pageTemplate: 'src/templates/testimonials.js',
+            pageLength: 20,
+            pathPrefix: 'sk/testimonials',
+            buildPath: (index, pathPrefix) =>
+              index > 1 ? `${pathPrefix}/${index}` : `/${pathPrefix}`, // This is optional and this is the default
+          })
+
+          createPaginatedPages({
+            edges: result.data.allContentfulTestimonial.edges,
+            createPage,
+            pageTemplate: 'src/templates/testimonials.js',
+            pageLength: 20,
+            pathPrefix: 'en/testimonials',
+            buildPath: (index, pathPrefix) =>
+              index > 1 ? `${pathPrefix}/${index}` : `/${pathPrefix}`, // This is optional and this is the default
+          })
+          return
+        })
+      })
 
     resolve()
   })

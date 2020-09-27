@@ -15,12 +15,13 @@ const IndexPage = ({ data, pathContext }) => {
   const homepage = data.allContentfulHomepage.edges[0].node
   const blogPosts = data.allContentfulBlog.edges
   const menuItems = data.allContentfulMenu.edges
+  const testimonials = data.allContentfulTestimonial ? data.allContentfulTestimonial.edges : []
 
   return (
     <div>
       <Navigation lang={pathContext.langKey} menuItems={menuItems} menuType="top" />
       <Hero data={homepage}/>
-      <HomepageBoxes data={homepage} lang={pathContext.langKey} />
+      <HomepageBoxes data={homepage} testimonials={testimonials} lang={pathContext.langKey} />
       <SecondSection data={homepage} lang={pathContext.langKey} />
       <BlogPostList posts={blogPosts} lang={pathContext.langKey} />
       <ContactFormSection data={homepage} lang={pathContext.langKey} />
@@ -152,6 +153,24 @@ export const pageQuery = graphql`
               link
               text
             }
+          }
+        }
+      }
+    }
+    allContentfulTestimonial(filter: {node_locale: {eq: "en"}, hide: {ne: true}}) {
+      edges {
+        node {
+          id
+          node_locale
+          hide
+          profile {
+            file {
+              url
+            }
+          }
+          author
+          testimonial {
+            testimonial
           }
         }
       }

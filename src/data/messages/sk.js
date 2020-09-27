@@ -23,4 +23,5 @@ module.exports = {
   'gdpr_confirmation': 'Súhlasím: ',
   'gdpr_more_info': 'Bližšie informácie o spracúvaní osobných údajov sa nachádzajú v dokumente Pravidlá ' +
     'ochrany osobných údajov, ktorých aktuálna verzia je dostupná ',
+  'allTestimonials': 'Zobraziť referencie'
 };
