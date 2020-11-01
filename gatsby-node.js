@@ -45,6 +45,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 node {
                   id
                   title
+                  hide
                   slug
                   node_locale
                   createdAt(formatString: "DD.MM.YYYY")

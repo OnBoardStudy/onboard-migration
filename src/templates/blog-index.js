@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import BlogPostList from '../components/BlogPostList'
-import BlogPostListNavigation from '..//components/BlogPostListNavigation'
+import BlogPostListNavigation from '../components/BlogPostListNavigation'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 
 const IndexPage = ({ data, pathContext }) => {
   const { group, index, pageCount, pathPrefix } = pathContext
   const lang = pathPrefix.substr(0, 2)
-  const blogPosts = group.filter(item => item.node.node_locale === lang)
+  const blogPosts = group.filter(
+    item => (item.node.node_locale === lang && item.node.hide !== true)
+  )
   const homepage = data.allContentfulHomepage.edges.filter(
     item => item.node.node_locale === lang
   )[0].node
