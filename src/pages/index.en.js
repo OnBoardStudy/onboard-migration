@@ -101,7 +101,7 @@ export const pageQuery = graphql`
     allContentfulBlog(
       filter: { node_locale: { eq: "en" }, hide: {ne: true} }
       sort: { fields: [createdAt], order: DESC }
-      limit: 5
+      limit: 2
     ) {
       edges {
         node {
