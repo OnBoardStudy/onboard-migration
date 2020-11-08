@@ -23,27 +23,13 @@ module.exports = class HTML extends React.Component {
     return (
       <html {...this.props.htmlAttributes}>
         <head>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              var name = 'world';
-              console.log('Hello ' + name);
-              `,
-            }}
-          />
+          <script src="https://www.googletagmanager.com/gtag/js?id=G-WR218MJ6RW" />
+          <script dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-36L4D5WEJW" />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              
-              gtag('config', 'G-36L4D5WEJW');
-              `,
-            }}
-          />
+            gtag('config', 'G-WR218MJ6RW');`}}/>
 
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
