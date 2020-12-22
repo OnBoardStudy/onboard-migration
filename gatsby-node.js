@@ -73,11 +73,12 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             reject(result.errors)
           }
 
+          // TODO: handle correct pagination, take into account language
           createPaginatedPages({
             edges: result.data.allContentfulBlog.edges,
             createPage,
             pageTemplate: 'src/templates/blog-index.js',
-            pageLength: 20,
+            pageLength: 100,
             pathPrefix: 'sk/blog',
             buildPath: (index, pathPrefix) =>
               index > 1 ? `${pathPrefix}/${index}` : `/${pathPrefix}`, // This is optional and this is the default
@@ -87,7 +88,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             edges: result.data.allContentfulBlog.edges,
             createPage,
             pageTemplate: 'src/templates/blog-index.js',
-            pageLength: 20,
+            pageLength: 100,
             pathPrefix: 'en/blog',
             buildPath: (index, pathPrefix) =>
               index > 1 ? `${pathPrefix}/${index}` : `/${pathPrefix}`, // This is optional and this is the default
