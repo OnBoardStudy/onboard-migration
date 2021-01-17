@@ -3,36 +3,12 @@ import PropTypes from 'prop-types'
 import Navigation from '../../components/Navigation'
 import Footer from '../../components/Footer'
 import Link from 'gatsby-link'
+import { StaticQuery, graphql } from "gatsby";
 
-class Thanks extends Component {
-  render() {
-    const homepage = this.props.data.allContentfulHomepage.edges[0].node
-    const menuItems = this.props.data.allContentfulMenu.edges
-
-    return (
-      <div className="page-content">
-        <Navigation lang="en" menuItems={menuItems} menuType="top" />
-
-        <div className="site-width">
-          <h1>Thank you!</h1>
-          <p>
-            We'll try to get back to you as soon as possible.{' '}
-            <Link to={`/en`}>&laquo; Back to homepage.</Link>
-          </p>
-        </div>
-        <Footer data={homepage} menuItems={menuItems} menuType="top" />
-      </div>
-    )
-  }
-}
-
-Thanks.PropTypes = {
-  data: PropTypes.object.isRequired,
-}
-
-export default Thanks
-
-export const thanksQuery = graphql`
+const Thanks = () => {
+  return (
+    <StaticQuery
+      query={graphql`
   query ThanksQuery {
     allContentfulHomepage(filter: { node_locale: { eq: "en" } }) {
       edges {
@@ -83,3 +59,34 @@ export const thanksQuery = graphql`
     }
   }
 `
+      }
+      render={
+        data => {
+          const homepage = data.allContentfulHomepage.edges[0].node
+          const menuItems = data.allContentfulMenu.edges
+
+          return (
+            <div className="page-content">
+              <Navigation lang="en" menuItems={menuItems} menuType="top" />
+
+              <div className="site-width">
+                <h1>Thank you!</h1>
+                <p>
+                  We'll try to get back to you as soon as possible.{' '}
+                  <Link to={`/en`}>&laquo; Back to homepage.</Link>
+                </p>
+              </div>
+              <Footer data={homepage} menuItems={menuItems} menuType="top" />
+            </div>
+          )
+        }
+      }
+    />
+  )
+}
+
+Thanks.propTypes = {
+  data: PropTypes.object.isRequired,
+}
+
+export default Thanks

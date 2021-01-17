@@ -1,9 +1,10 @@
 import React from 'react';
-import graphql from 'graphql';
+import { graphql } from 'graphql';
 import { getUserLangKey } from 'ptz-i18n';
 import { withPrefix } from "gatsby-link";
+import Layout from "../components/layout";
 
-class RedirectIndex extends React.PureComponent {
+export default class RedirectIndex extends React.PureComponent {
   constructor(args) {
     super(args);
 
@@ -14,11 +15,13 @@ class RedirectIndex extends React.PureComponent {
   }
 
   render() {
-    return (<div />);
+    return (
+      <Layout location={this.props.location}>
+        <div />
+      </Layout>
+      );
   }
 }
-
-export default RedirectIndex;
 
 export const pageQuery = graphql`
   query IndexQuery {

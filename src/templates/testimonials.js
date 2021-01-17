@@ -4,9 +4,10 @@ import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
 import TestimonialList from '../components/TestimonialList'
 import Hero from '../components/Hero'
+import { graphql } from "gatsby";
 
-const TestimonialsPage = ({ data, pathContext }) => {
-  const { group, index, pageCount, pathPrefix } = pathContext
+const TestimonialsPage = ({ data, pageContext }) => {
+  const { group, index, pageCount, pathPrefix } = pageContext
   const lang = pathPrefix.substr(0, 2)
   // TODO: add a check if data were not loaded, or don't exist
   const page = data.allContentfulTestimonialsPage.edges.find((edge) => edge.node.node_locale === lang).node;

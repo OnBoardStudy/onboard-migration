@@ -10,8 +10,9 @@ import Footer from '../components/Footer'
 
 import 'font-awesome/css/font-awesome.min.css'
 import '../styles/main.css'
+import { graphql } from "gatsby";
 
-const IndexPage = ({ data, pathContext }) => {
+const IndexPage = ({ data, pageContext }) => {
   const homepage = data.allContentfulHomepage.edges[0].node
   const blogPosts = data.allContentfulBlog.edges
   const menuItems = data.allContentfulMenu.edges
@@ -19,12 +20,12 @@ const IndexPage = ({ data, pathContext }) => {
 
   return (
     <div>
-      <Navigation lang={pathContext.langKey} menuItems={menuItems} menuType="top" />
+      <Navigation lang={pageContext.langKey} menuItems={menuItems} menuType="top" />
       <Hero data={homepage} />
-      <HomepageBoxes data={homepage} testimonials={testimonials} lang={pathContext.langKey} />
-      <SecondSection data={homepage} lang={pathContext.langKey} />
-      <BlogPostList posts={blogPosts} lang={pathContext.langKey} />
-      <ContactFormSection data={homepage} lang={pathContext.langKey} />
+      <HomepageBoxes data={homepage} testimonials={testimonials} lang={pageContext.langKey} />
+      <SecondSection data={homepage} lang={pageContext.langKey} />
+      <BlogPostList posts={blogPosts} lang={pageContext.langKey} />
+      <ContactFormSection data={homepage} lang={pageContext.langKey} />
       <Footer data={homepage} menuItems={menuItems} menuType="top" />
     </div>
   )

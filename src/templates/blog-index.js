@@ -3,9 +3,10 @@ import BlogPostList from '../components/BlogPostList'
 import BlogPostListNavigation from '../components/BlogPostListNavigation'
 import Navigation from '../components/Navigation'
 import Footer from '../components/Footer'
+import { graphql } from "gatsby";
 
-const IndexPage = ({ data, pathContext }) => {
-  const { group, index, pageCount, pathPrefix } = pathContext
+const IndexPage = ({ data, pageContext }) => {
+  const { group, index, pageCount, pathPrefix } = pageContext
   const lang = pathPrefix.substr(0, 2)
   const blogPosts = group.filter(
     item => (item.node.node_locale === lang && item.node.hide !== true)

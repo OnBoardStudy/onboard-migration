@@ -6,7 +6,7 @@ const Navigation = props => {
   const menuItems = menu[0].node.items
 
   const localeNavigation = menuItems.map(item => {
-    if (item.link.substring(0, 4) == 'http') {
+    if (item.link.substring(0, 4) === 'http') {
       return (
         <a href={item.link} target="__blank" key={item.id}>
           <button className="button-smol">{item.text}</button>

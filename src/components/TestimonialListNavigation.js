@@ -13,7 +13,7 @@ const NavLink = props => {
 const TestimonialListNavigation = props => {
   const { index, pageCount, lang } = props
 
-  const previousUrl = index - 1 == 1 ? '' : (index - 1).toString()
+  const previousUrl = index - 1 === 1 ? '' : (index - 1).toString()
   const nextUrl = (index + 1).toString()
   const first = index === 1
   const last = index === pageCount / 2 || pageCount === 1
